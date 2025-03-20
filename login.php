@@ -4,16 +4,15 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $maSV = $_POST['MaSV'];
+
+    // Kiểm tra xem sinh viên có tồn tại không
     $result = $conn->query("SELECT * FROM sinhvien WHERE MaSV='$maSV'");
 
     if ($result->num_rows > 0) {
         $_SESSION['MaSV'] = $maSV;
-        echo "<script>
-                document.getElementById('alert-success').style.display = 'block';
-                setTimeout(() => { window.location='index.php'; }, 1500);
-              </script>";
+        echo "<script>alert('Đăng nhập thành công!'); window.location='index.php';</script>";
     } else {
-        echo "<script>document.getElementById('alert-fail').style.display = 'block';</script>";
+        echo "<script>alert('Mã sinh viên không tồn tại!');</script>";
     }
 }
 ?>
@@ -25,56 +24,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Nhập</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .login-container {
-            max-width: 400px;
-            margin: 100px auto;
-            padding: 30px;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-        .alert {
-            display: none;
-        }
-    </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="login-container">
-        <h2 class="text-center text-uppercase">Đăng Nhập</h2>
+    <div class="container mt-4">
+        <h2 class="text-uppercase text-center">Đăng Nhập</h2>
         <form method="POST">
             <div class="mb-3">
-                <label class="form-label fw-bold">Mã Sinh Viên</label>
-                <input type="text" class="form-control" name="MaSV" placeholder="Nhập mã sinh viên" required>
+                <label class="form-label">MaSV</label>
+                <input type="text" class="form-control" name="MaSV" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Đăng Nhập</button>
+            <button type="submit" class="btn btn-primary">Đăng Nhập</button>
         </form>
-        <a href="index.php" class="d-block text-center mt-3 text-decoration-none">⬅ Quay lại trang chủ</a>
+        <a href="index.php" class="d-block mt-3">Back to List</a>
     </div>
-</div>
-
-<script>
-    window.onload = function() {
-        if (document.getElementById('alert-success').innerText.trim() !== "") {
-            document.getElementById('alert-success').style.display = 'block';
-        }
-        if (document.getElementById('alert-fail').innerText.trim() !== "") {
-            document.getElementById('alert-fail').style.display = 'block';
-        }
-    }
-</script>
-
 </body>
 </html>
