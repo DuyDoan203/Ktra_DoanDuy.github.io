@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container mt-4">
-        <h2 class="text-uppercase">Hiệu chỉnh thông tin sinh viên</h2>
+        <h2 class="text-uppercase">Chỉnh sửa thông tin sinh viên</h2>
         <form action="edit.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label class="form-label">HoTen</label>
