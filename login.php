@@ -54,12 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container">
     <div class="login-container">
         <h2 class="text-center text-uppercase">Đăng Nhập</h2>
-
-        <!-- Thông báo thành công -->
-        <div id="alert-success" class="alert alert-success text-center">Đăng nhập thành công! Đang chuyển hướng...</div>
-        <!-- Thông báo thất bại -->
-        <div id="alert-fail" class="alert alert-danger text-center">Mã sinh viên không tồn tại!</div>
-
         <form method="POST">
             <div class="mb-3">
                 <label class="form-label fw-bold">Mã Sinh Viên</label>
@@ -72,7 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <script>
-    // Hiển thị thông báo lỗi hoặc thành công ngay khi có
     window.onload = function() {
         if (document.getElementById('alert-success').innerText.trim() !== "") {
             document.getElementById('alert-success').style.display = 'block';
